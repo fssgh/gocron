@@ -17,7 +17,7 @@ const (
 type Process struct {
 	Id          int             `json:"id" xorm:"int pk autoincr"`
 	Name        string          `json:"name" xorm:"varchar(256) notnull"`
-	Command     string          `json:"command" xorm:"varchar(256) notnull"`
+	Command     string          `json:"command" xorm:"varchar(3000) notnull"`
 	Status      ProcessStatus   `json:"status" xorm:"tinyint notnull default 2"`
 	Tag         string          `json:"tag" xorm:"varchar(32) notnull default ''"`
 	ProjectId   int             `json:"project_id" xorm:"int notnull default 0"`

@@ -27,9 +27,11 @@ INPUT_OS=()
 # 外部输入的架构
 INPUT_ARCH=()
 # 未指定OS，默认值
-DEFAULT_OS=${GOHOSTOS}
+#DEFAULT_OS=${GOHOSTOS}
+DEFAULT_OS=windows
 # 未指定ARCH,默认值
-DEFAULT_ARCH=${GOHOSTARCH}
+#DEFAULT_ARCH=${GOHOSTARCH}
+DEFAULT_ARCH=amd64
 # 支持的系统
 SUPPORT_OS=(linux darwin windows)
 # 支持的架构

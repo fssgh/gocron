@@ -56,7 +56,7 @@ install-vue:
 
 .PHONY: run-vue
 run-vue:
-	cd web/vue && npm run dev
+	cd web/vue && npm run serve
 
 .PHONY: statik
 statik:

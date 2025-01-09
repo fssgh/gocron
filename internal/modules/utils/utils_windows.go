@@ -26,6 +26,18 @@ type Result struct {
 // ExecShell 执行shell命令，可设置执行超时时间
 func ExecShell(ctx context.Context, command string) (string, error) {
 	cmd := exec.Command("cmd", "/C", command)
+	// 判断指令字符串是否以 "powershell -command" 开头
+	if strings.HasPrefix(strings.ToLower(command), "powershell -command") {
+		powerShellCommand := strings.TrimPrefix(command, "powershell -command")
+		powerShellCommand = strings.TrimSpace(powerShellCommand)
+		// 使用 PowerShell 执行指令
+		fmt.Println("使用 PowerShell 执行指令")
+		// 创建一个 *exec.Cmd 对象，用于执行 PowerShell 指令
+		cmd = exec.Command("powershell", "-Command", powerShellCommand)
+	} else {
+		// 使用 CMD 执行指令
+		fmt.Println("使用 CMD 执行指令")
+	}
 	// 隐藏cmd窗口
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		HideWindow: true,
@@ -50,6 +62,18 @@ func ExecShell(ctx context.Context, command string) (string, error) {
 // StartWorker 开始工作进程
 func StartWorker(ctx context.Context, req *rpc.StartRequest) (int, error) {
 	cmd := exec.Command("cmd", "/C", req.Command)
+	// 判断指令字符串是否以 "powershell -command" 开头
+	if strings.HasPrefix(strings.ToLower(req.Command), "powershell -command") {
+		powerShellCommand := strings.TrimPrefix(req.Command, "powershell -command")
+		powerShellCommand = strings.TrimSpace(powerShellCommand)
+		// 使用 PowerShell 执行指令
+		fmt.Println("使用 PowerShell 执行指令")
+		// 创建一个 *exec.Cmd 对象，用于执行 PowerShell 指令
+		cmd = exec.Command("powershell", "-Command", powerShellCommand)
+	} else {
+		// 使用 CMD 执行指令
+		fmt.Println("使用 CMD 执行指令")
+	}
 	// 隐藏cmd窗口
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		HideWindow: true,
